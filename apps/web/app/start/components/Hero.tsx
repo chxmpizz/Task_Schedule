@@ -10,8 +10,8 @@ const Hero = () => {
                     Organize Your Life, One Task at a Time
                 </h1>
                 <p className="text-center text-xl font-light text-gray-400">
-                    A minimal, clean task scheduling app, Organize your
-                    tasks,manage your schedule, and boost your productivity.
+                    A minimal, clean task scheduling app, Organize your tasks,
+                    manage your schedule, and boost your productivity.
                 </p>
             </div>
             <div className="my-5 flex items-center justify-center">

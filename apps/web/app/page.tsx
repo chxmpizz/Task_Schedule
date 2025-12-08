@@ -10,7 +10,7 @@ const page = () => {
         <div>
             {/* <Navbar /> */}
             <StartNav />
-            <div className="flex h-[85vh] items-center justify-center">
+            <div className="flex h-[90vh] items-center justify-center">
                 <Hero />
             </div>
             <div>
