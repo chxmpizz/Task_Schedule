@@ -1,12 +1,27 @@
-import { Button } from "@workspace/ui/components/button"
+import React from 'react'
+import Hero from './start/components/Hero'
+import StartNav from './start/components/StartNav'
+import Features from './start/components/Features'
+import CTA_Section from './start/components/CTA_Section'
+import Footer from './shared/components/Footer'
 
-export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-svh">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl font-bold">Hello World</h1>
-        <Button size="sm">Button</Button>
-      </div>
-    </div>
-  )
+const page = () => {
+    return (
+        <div>
+            {/* <Navbar /> */}
+            <StartNav />
+            <div className="flex h-[85vh] items-center justify-center">
+                <Hero />
+            </div>
+            <div>
+                <Features />
+            </div>
+            <div className="flex h-[50vh] items-center justify-center">
+                <CTA_Section />
+            </div>
+            <Footer />
+        </div>
+    )
 }
+
+export default page
