@@ -1,5 +1,10 @@
 import React from 'react'
-import { Calendar, ChartArea, CheckCheckIcon, User } from 'lucide-react'
+import {
+    Calendar,
+    ChartNoAxesColumnIncreasing,
+    CheckCheckIcon,
+    User,
+} from 'lucide-react'
 
 const Features = () => {
     return (
@@ -16,8 +21,8 @@ const Features = () => {
             <div className="my-10 flex items-center justify-center">
                 <div className="grid grid-cols-2 gap-15">
                     <div className="flex flex-col items-center justify-center gap-4">
-                        <ChartArea
-                            size={64}
+                        <ChartNoAxesColumnIncreasing
+                            size={60}
                             className="rounded-xl bg-gray-200 px-2 py-3 text-xl text-gray-600"
                         />
                         <h1 className="text-lg font-semibold">Dashboard</h1>
@@ -28,7 +33,7 @@ const Features = () => {
                     </div>
                     <div className="flex flex-col items-center justify-center gap-4">
                         <CheckCheckIcon
-                            size={64}
+                            size={60}
                             className="rounded-xl bg-gray-200 px-2 py-3 text-xl text-gray-600"
                         />
                         <h1 className="text-lg font-semibold">
@@ -41,7 +46,7 @@ const Features = () => {
                     </div>
                     <div className="flex flex-col items-center justify-center gap-4">
                         <Calendar
-                            size={64}
+                            size={60}
                             className="rounded-xl bg-gray-200 px-2 py-3 text-xl text-gray-600"
                         />
                         <h1 className="text-lg font-semibold">
@@ -54,7 +59,7 @@ const Features = () => {
                     </div>
                     <div className="flex flex-col items-center justify-center gap-4">
                         <User
-                            size={64}
+                            size={60}
                             className="rounded-xl bg-gray-200 px-2 py-3 text-xl text-gray-600"
                         />
                         <h1 className="text-lg font-semibold">
