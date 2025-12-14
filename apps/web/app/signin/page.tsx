@@ -22,7 +22,7 @@ const signInSchema = z.object({
     password: z.string().min(8, 'Password must be at least 8 characters long'),
 })
 
-const LoginPage = () => {
+const SignInPage = () => {
     const onSubmit = (data: z.infer<typeof signInSchema>) => {
         console.log(data)
     }
@@ -59,7 +59,7 @@ const LoginPage = () => {
                         <span className="w-full border-t" />
                     </div>
                     <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-white px-2 text-gray-500">
+                        <span className="bg-background px-2 text-gray-500">
                             Or continue with email
                         </span>
                     </div>
@@ -106,7 +106,7 @@ const LoginPage = () => {
                         />
                         <Button
                             type="submit"
-                            className="w-full cursor-pointer bg-[#3F72AF] hover:bg-[#4b6583]"
+                            className="text-white w-full cursor-pointer bg-[#3F72AF] hover:bg-[#4b6583]"
                         >
                             Sign In
                         </Button>
@@ -128,4 +128,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default SignInPage

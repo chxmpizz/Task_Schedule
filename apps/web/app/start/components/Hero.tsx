@@ -1,8 +1,10 @@
 'use client'
 import { Button } from '@workspace/ui/components/button'
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 const Hero = () => {
+    const router = useRouter()
     return (
         <div>
             <div className="flex w-3xl flex-col items-center justify-center gap-6">
@@ -15,7 +17,10 @@ const Hero = () => {
                 </p>
             </div>
             <div className="my-5 flex items-center justify-center">
-                <Button className="cursor-pointer rounded-lg bg-[#3F72AF] px-4 py-6 text-xl font-semibold text-white duration-200 ease-in hover:bg-[#4b6583]">
+                <Button
+                    onClick={() => router.push('/signup')}
+                    className="cursor-pointer rounded-lg bg-[#3F72AF] px-4 py-6 text-xl font-semibold text-white duration-200 ease-in hover:bg-[#4b6583]"
+                >
                     Start Free Today!
                 </Button>
             </div>
