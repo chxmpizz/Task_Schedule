@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../shared/components/Navbar'
+import Navbar from '../../shared/components/Navbar'
 
 import Completed from './components/Completed'
 import InProgress from './components/InProgress'
