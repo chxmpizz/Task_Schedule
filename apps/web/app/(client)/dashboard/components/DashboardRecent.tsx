@@ -1,42 +1,5 @@
 import React from 'react'
-
-const TasksTest = [
-    {
-        id: 1,
-        TaskName: 'Review project proposal',
-        priority: 'High',
-        time: '10:00',
-        done: false,
-    },
-    {
-        id: 2,
-        TaskName: 'Team stand up meeting',
-        priority: 'Medium',
-        time: '11:00',
-        done: true,
-    },
-    {
-        id: 3,
-        TaskName: 'Update design mockups',
-        priority: 'High',
-        time: '13:00',
-        done: false,
-    },
-    {
-        id: 4,
-        TaskName: 'Client presentation',
-        priority: 'High',
-        time: '16:00',
-        done: false,
-    },
-    {
-        id: 5,
-        TaskName: 'Code review',
-        priority: 'Low',
-        time: '17:30',
-        done: true,
-    },
-]
+import { TasksTest } from '@/utils/data'
 
 const DashboardRecent = () => {
     return (
