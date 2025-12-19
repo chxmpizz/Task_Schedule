@@ -14,7 +14,7 @@ const Dashboard = () => {
         <div>
             <Navbar />
             <div className="h-[8vh]"></div>
-            <div className="px-20 py-5">
+            <div className="px-15 py-5">
                 <DashboardTopic />
                 <div className="grid grid-cols-2 gap-5">
                     <TotalTask total={24} totalDue={8} />

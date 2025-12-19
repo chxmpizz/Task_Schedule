@@ -9,7 +9,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@workspace/ui/components/card'
-import { Clock7 } from 'lucide-react'
+import { CircleCheckBig, Circle } from 'lucide-react'
 import { TasksTest } from '@/utils/data'
 
 export function Schedule() {
@@ -19,7 +19,6 @@ export function Schedule() {
 
     return (
         <div suppressHydrationWarning>
-            <div className="h-[6vh]"></div>
             <Calendar
                 mode="single"
                 selected={date}
@@ -41,9 +40,11 @@ export function Schedule() {
                             >
                                 <div className="flex items-center gap-4">
                                     <div>
-                                        <Clock7
-                                            className={`${task.done ? 'text-ring' : ''}`}
-                                        />
+                                        {task.done ? (
+                                            <CircleCheckBig />
+                                        ) : (
+                                            <Circle />
+                                        )}
                                     </div>
                                     <div>
                                         <h1

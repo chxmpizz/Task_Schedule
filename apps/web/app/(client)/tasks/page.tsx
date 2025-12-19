@@ -9,7 +9,7 @@ const page = () => {
     return (
         <div className="">
             <div className="h-[10vh]"></div>
-            <div className="px-10">
+            <div className="px-15">
                 <div className="flex items-center justify-between gap-2">
                     <div className="space-y-2">
                         <h1 className="text-3xl font-extrabold">Tasks</h1>
