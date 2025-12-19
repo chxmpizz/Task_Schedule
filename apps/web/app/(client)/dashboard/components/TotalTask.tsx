@@ -8,7 +8,7 @@ interface TotalTaskProps {
 
 const TotalTask = ({ total, totalDue }: TotalTaskProps) => {
     return (
-        <div className="bg-secondary text-foreground ring-ring mt-5 flex flex-col rounded-md shadow-md ring-2">
+        <div className="bg-background text-foreground ring-ring mt-5 flex flex-col rounded-md shadow-md ring-2">
             <div className="flex items-center justify-between px-10 py-4">
                 <h2 className="text-lg">Total Tasks</h2>
                 <ListTodo />

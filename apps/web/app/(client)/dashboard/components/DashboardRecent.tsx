@@ -3,7 +3,7 @@ import { TasksTest } from '@/utils/data'
 
 const DashboardRecent = () => {
     return (
-        <div className="bg-secondary text-foreground ring-ring mt-5 flex flex-col rounded-md pb-4 shadow-md ring-2">
+        <div className="bg-background text-foreground ring-ring mt-5 flex flex-col rounded-md pb-4 shadow-md ring-2">
             <div className="flex items-center justify-between px-10 py-4">
                 <h2 className="text-lg font-bold">Recent Tasks</h2>
             </div>
