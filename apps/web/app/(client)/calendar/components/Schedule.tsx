@@ -18,7 +18,7 @@ export function Schedule() {
     )
 
     return (
-        <div suppressHydrationWarning>
+        <div >
             <Calendar
                 mode="single"
                 selected={date}

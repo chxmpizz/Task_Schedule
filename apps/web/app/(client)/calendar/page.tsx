@@ -3,7 +3,7 @@ import { Schedule } from './components/Schedule'
 
 const page = () => {
     return (
-        <div className="px-15 py-5">
+        <div className="px-15 py-5" suppressHydrationWarning>
             <div className="h-[6vh]"></div>
             <div className="space-y-2">
                 <h1 className="text-3xl font-extrabold">Schedule</h1>
