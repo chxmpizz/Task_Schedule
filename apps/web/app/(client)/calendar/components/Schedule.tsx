@@ -18,7 +18,7 @@ export function Schedule() {
     )
 
     return (
-        <div >
+        <div>
             <Calendar
                 mode="single"
                 selected={date}

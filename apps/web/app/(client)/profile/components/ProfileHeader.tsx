@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from '@workspace/ui/components/card'
+import { Card, CardHeader, CardTitle } from '@workspace/ui/components/card'
 import {
     Avatar,
     AvatarImage,
