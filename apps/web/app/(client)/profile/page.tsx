@@ -4,6 +4,8 @@ import ProfileTotalTask from './components/ProfileTotalTask'
 import ProfileCompleted from './components/ProfileCompleted'
 import ProfileStreak from './components/ProfileStreak'
 import ProfileAchievements from './components/ProfileAchievements'
+import ProfileInfo from './components/ProfileInfo'
+import Preference from './components/Preference'
 
 const page = () => {
     return (
@@ -15,6 +17,12 @@ const page = () => {
                 <ProfileCompleted value={98} />
                 <ProfileStreak value={7} />
                 <ProfileAchievements value={5} />
+            </div>
+            <div className="my-4">
+                <ProfileInfo />
+            </div>
+            <div>
+                <Preference />
             </div>
         </div>
     )

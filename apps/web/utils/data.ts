@@ -45,3 +45,9 @@ export const TasksTest = [
         done: true,
     },
 ]
+
+export const userTest = {
+    name: 'John Doe',
+    email: 'johndoe@gmail.com',
+    bio: 'Product designer and developer passionate about creating beautiful user experiences.',
+}
