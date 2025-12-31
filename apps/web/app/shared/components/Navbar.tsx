@@ -31,24 +31,21 @@ const Navbar = () => {
                 <div className="flex pr-5">
                     <div className="flex gap-4 px-1">
                         <Button
-                            className={` ${pathName == '/dashboard' ? 'bg-secondary' : 'bg-background'} text-foreground hover:bg-secondary flex gap-2 rounded-lg py-1 duration-200`}
-                            disabled={pathName === '/dashboard'}
+                            className={` ${pathName == '/dashboard' ? 'bg-secondary' : 'bg-background'} text-foreground hover:bg-secondary flex cursor-pointer gap-2 rounded-lg py-1 duration-200`}
                             onClick={() => router.push('/dashboard')}
                         >
                             <LayoutDashboard />
                             Dashboard
                         </Button>
                         <Button
-                            className={` ${pathName == '/tasks' ? 'bg-secondary' : 'bg-background'} text-foreground hover:bg-secondary flex gap-2 rounded-lg py-1 duration-200`}
-                            disabled={pathName === '/tasks'}
+                            className={` ${pathName == '/tasks' ? 'bg-secondary' : 'bg-background'} text-foreground hover:bg-secondary flex cursor-pointer gap-2 rounded-lg py-1 duration-200`}
                             onClick={() => router.push('/tasks')}
                         >
                             <ListTodo />
                             Tasks
                         </Button>
                         <Button
-                            className={` ${pathName == '/calendar' ? 'bg-secondary' : 'bg-background'} text-foreground hover:bg-secondary flex gap-2 rounded-lg py-1 duration-200`}
-                            disabled={pathName === '/calendar'}
+                            className={` ${pathName == '/calendar' ? 'bg-secondary' : 'bg-background'} text-foreground hover:bg-secondary flex cursor-pointer gap-2 rounded-lg py-1 duration-200`}
                             onClick={() => router.push('/calendar')}
                         >
                             <Calendar />
@@ -57,7 +54,7 @@ const Navbar = () => {
                     </div>
                     <div className="flex gap-1 px-2">
                         <DropdownMenu>
-                            <DropdownMenuTrigger>
+                            <DropdownMenuTrigger className="cursor-pointer">
                                 <Avatar>
                                     <AvatarImage src="https://github.com/shadcn.png" />
                                     <AvatarFallback>CN</AvatarFallback>
