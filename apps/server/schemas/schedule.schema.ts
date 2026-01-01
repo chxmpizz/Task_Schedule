@@ -1,50 +1,66 @@
-import mongoose, { Schema } from 'mongoose';
-// import { User } from './user';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
 
-const schedule = new Schema({
-  Topic: {
+export type ScheduleDocument = Schedule & Document;
+
+@Schema({ timestamps: true })
+export class Schedule {
+  @Prop({
     type: String,
     default: 'Schedule Topic',
-    require: false,
     trim: false,
-  },
-  Schedule_date: {
+  })
+  Topic?: string;
+
+  @Prop({
     type: Date,
-    require: true,
-    default: Date.now(),
-  },
-  OwnerId: {
-    type: mongoose.Schema.Types.ObjectId,
+    default: Date.now,
+    required: true,
+  })
+  Schedule_date: Date;
+
+  @Prop({
+    type: Types.ObjectId,
     ref: 'User',
-    require: true,
-  },
-  ClientId: {
-    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  })
+  OwnerId: Types.ObjectId;
+
+  @Prop({
+    type: Types.ObjectId,
     ref: 'Client',
-    require: true,
-  },
-  Priority: {
+    required: true,
+  })
+  ClientId: Types.ObjectId;
+
+  @Prop({
     type: String,
     enum: ['High', 'Medium', 'Low'],
     default: 'Low',
-    require: true,
-  },
-  Status: {
+    required: true,
+  })
+  Priority: 'High' | 'Medium' | 'Low';
+
+  @Prop({
     type: String,
     enum: ['pending', 'confirmed', 'cancelled', 'done'],
     default: 'pending',
-    require: false,
-  },
-  Locate: {
-    type: String,
-    require: true,
-    trim: false,
-  },
-  Related_Task: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Task',
-    require: true,
-  },
-});
+  })
+  Status: 'pending' | 'confirmed' | 'cancelled' | 'done';
 
-export const Schedule = mongoose.model('Schedule', schedule);
+  @Prop({
+    type: String,
+    required: true,
+    trim: false,
+  })
+  Locate: string;
+
+  @Prop({
+    type: Types.ObjectId,
+    ref: 'Task',
+    required: true,
+  })
+  Related_Task: Types.ObjectId;
+}
+
+export const ScheduleSchema = SchemaFactory.createForClass(Schedule);

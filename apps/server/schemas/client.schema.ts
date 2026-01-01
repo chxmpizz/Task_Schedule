@@ -1,16 +1,23 @@
-import mongoose, { mongo } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
 
-const client = new mongoose.Schema({
-  UserId: {
-    type: mongoose.Schema.Types.ObjectId,
+export type ClientDocument = Client & Document;
+
+@Schema({ timestamps: true })
+export class Client {
+  @Prop({
+    type: Types.ObjectId,
     ref: 'User',
-    require: true,
-  },
-  Appointment_date: {
-    type: Date,
-    default: Date.now(),
-    require: true,
-  },
-});
+    required: true,
+  })
+  UserId: Types.ObjectId;
 
-export const Client = mongoose.model('Client', client);
+  @Prop({
+    type: Date,
+    default: Date.now,
+    required: true,
+  })
+  Appointment_date: Date;
+}
+
+export const ClientSchema = SchemaFactory.createForClass(Client);
