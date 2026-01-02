@@ -9,6 +9,7 @@ import {
   Min,
   Max,
   IsNotEmpty,
+  IsEnum,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -59,4 +60,8 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   Phone: string;
+
+  @IsString()
+  @IsEnum(['User', 'Freelancer'])
+  Role: 'User' | 'Freelancer';
 }

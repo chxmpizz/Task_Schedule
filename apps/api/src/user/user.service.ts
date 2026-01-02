@@ -17,15 +17,15 @@ export class UserService {
     return this.userModel.find();
   }
 
-  findOne(id: number) {
+  findOneUser(id: string) {
     return this.userModel.findById(id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  updateUser(id: string, updateUserDto: UpdateUserDto) {
     return this.userModel.findByIdAndUpdate(id, updateUserDto);
   }
 
-  remove(id: number) {
+  removeUser(id: string) {
     return this.userModel.findByIdAndDelete(id);
   }
 }
