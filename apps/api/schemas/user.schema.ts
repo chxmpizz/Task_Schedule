@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import * as bcrypt from 'bcrypt';
 
 export type UserDocument = User & Document;
 
@@ -57,9 +61,12 @@ export class User {
     default: 'User',
   })
   Role: 'User' | 'Freelancer';
-
-  @Prop({ default: Date.now })
-  LastLoginAt: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+UserSchema.pre('save', async function () {
+  if (this.isModified('Password')) {
+    this.Password = await bcrypt.hash(this.Password, 10);
+  }
+});

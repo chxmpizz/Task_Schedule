@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   Controller,
   Get,
@@ -6,16 +8,20 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post('register')
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.createUser(createUserDto);
   }
@@ -25,9 +31,10 @@ export class UserController {
     return this.userService.findAllUser();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOneUser(id);
+  @Get('Email')
+  findByEmail(@Query('Email') Email: string) {
+    console.log('Email search initiated for:', Email);
+    return this.userService.findByEmail(Email);
   }
 
   @Patch(':id')
@@ -38,5 +45,20 @@ export class UserController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.removeUser(id);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('profile')
+  async getProfile(@Request() req: any) {
+    const userEmail = req.user?.email || req.user?.Email;
+    console.log('Token payload received in profile route:', userEmail);
+
+    if (!userEmail) {
+      console.error('No email found in token payload!');
+      return { message: 'Invalid Token Payload' };
+    }
+
+    console.log('Fetching profile for:', userEmail);
+    return await this.userService.findByEmail(userEmail);
   }
 }

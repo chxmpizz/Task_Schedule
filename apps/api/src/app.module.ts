@@ -9,10 +9,13 @@ import { TaskModule } from './task/task.module';
 import { ScheduleModule } from './schedule/schedule.module';
 import { ClientModule } from './client/client.module';
 import { ConfigModule } from '@nestjs/config';
+// import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
+      isGlobal: true,
       envFilePath: ['.env'],
     }),
     MongooseModule.forRoot('mongodb://localhost:27017/task_Schedule'),
@@ -20,6 +23,8 @@ import { ConfigModule } from '@nestjs/config';
     TaskModule,
     ScheduleModule,
     ClientModule,
+    AuthModule,
+    // AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
