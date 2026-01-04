@@ -14,25 +14,26 @@ export type UserDocument = User & Document;
   },
 })
 export class User {
-  @Prop({ required: true, trim: true })
+  @Prop({ required: false, trim: true })
   Name: string;
 
   @Prop({
-    required: true,
+    required: false,
     unique: true,
     trim: true,
     lowercase: true,
   })
   Email: string;
-
-  @Prop({ required: true, trim: true })
-  Password: string;
+  // ปรับ Password ให้ไม่บังคับ เพราะ Google Login ไม่มีรหัสผ่าน
+  @Prop({ required: false, trim: true })
+  Password?: string;
 
   @Prop({ required: false, trim: true })
   Profile_Img?: string;
 
-  @Prop({ required: true, trim: true })
-  Occupation: string;
+  // ปรับ Occupation ให้ไม่บังคับ
+  @Prop({ required: false, trim: true })
+  Occupation?: string;
 
   @Prop({ required: false, trim: true })
   house_Number?: string;
@@ -49,11 +50,13 @@ export class User {
   @Prop({ required: false, trim: true })
   province?: string;
 
-  @Prop({ required: true })
-  Age: number;
+  // ปรับ Age ให้ไม่บังคับ
+  @Prop({ required: false })
+  Age?: number;
 
-  @Prop({ required: true, trim: true })
-  Phone: string;
+  // ปรับ Phone ให้ไม่บังคับ
+  @Prop({ required: false, trim: true })
+  Phone?: string;
 
   @Prop({
     type: String,
@@ -61,6 +64,11 @@ export class User {
     default: 'User',
   })
   Role: 'User' | 'Freelancer';
+
+  @Prop({
+    required: false,
+  })
+  Google_id?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

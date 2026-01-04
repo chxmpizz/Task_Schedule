@@ -7,12 +7,16 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { ConfigService, ConfigModule } from '@nestjs/config';
+import { GoogleStrategy } from './strategies/google.strategy';
+import { MongooseModule } from '@nestjs/mongoose';
+import { User, UserSchema } from '../../schemas/user.schema';
 
 @Module({
   imports: [
     UserModule,
     ConfigModule,
     PassportModule,
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       // eslint-disable-next-line @typescript-eslint/require-await
@@ -23,7 +27,7 @@ import { ConfigService, ConfigModule } from '@nestjs/config';
       inject: [ConfigService],
     }),
   ],
-  providers: [AuthService, JwtStrategy, LocalStrategy],
+  providers: [AuthService, JwtStrategy, LocalStrategy, GoogleStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}

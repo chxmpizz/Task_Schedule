@@ -61,6 +61,10 @@ export class CreateUserDto {
   @IsNotEmpty()
   Phone: string;
 
+  @IsOptional()
+  @IsString()
+  Google_id?: string;
+
   @IsString()
   @IsEnum(['User', 'Freelancer'])
   Role: 'User' | 'Freelancer';
