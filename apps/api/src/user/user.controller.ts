@@ -33,7 +33,6 @@ export class UserController {
 
   @Get('Email')
   findByEmail(@Query('Email') Email: string) {
-    console.log('Email search initiated for:', Email);
     return this.userService.findByEmail(Email);
   }
 
@@ -51,14 +50,10 @@ export class UserController {
   @Get('profile')
   async getProfile(@Request() req: any) {
     const userEmail = req.user?.email || req.user?.Email;
-    console.log('Token payload received in profile route:', userEmail);
 
     if (!userEmail) {
-      console.error('No email found in token payload!');
       return { message: 'Invalid Token Payload' };
     }
-
-    console.log('Fetching profile for:', userEmail);
     return await this.userService.findByEmail(userEmail);
   }
 }

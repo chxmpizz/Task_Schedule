@@ -16,6 +16,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import Link from 'next/link'
+import { login, googleLogin } from '@/hooks/useAuth'
+import { useRouter } from 'next/navigation'
 
 const signInSchema = z.object({
     email: z.string().email('Invalid email address'),
@@ -23,8 +25,19 @@ const signInSchema = z.object({
 })
 
 const SignInPage = () => {
-    const onSubmit = (data: z.infer<typeof signInSchema>) => {
-        console.log(data)
+    const router = useRouter()
+    const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+        try {
+            const result = await login({
+                Email: data.email,
+                Password: data.password,
+            })
+            if (result) {
+                router.push('/dashboard')
+            }
+        } catch (error) {
+            console.error('Login failed', error)
+        }
     }
     const form = useForm<z.infer<typeof signInSchema>>({
         resolver: zodResolver(signInSchema),
@@ -45,7 +58,10 @@ const SignInPage = () => {
                     </p>
                 </div>
                 <div className="my-5 flex w-auto flex-col gap-4">
-                    <Button className="bg-background text-foreground hover:text-background flex cursor-pointer rounded-md border-2 border-gray-200 px-10 py-5">
+                    <Button
+                        onClick={() => googleLogin()}
+                        className="bg-background text-foreground hover:text-background flex cursor-pointer rounded-md border-2 border-gray-200 px-10 py-5"
+                    >
                         <FontAwesomeIcon icon={faGoogle} />
                         <p>Continue with Google</p>
                     </Button>
@@ -106,7 +122,7 @@ const SignInPage = () => {
                         />
                         <Button
                             type="submit"
-                            className="text-white w-full cursor-pointer bg-[#3F72AF] hover:bg-[#4b6583]"
+                            className="w-full cursor-pointer bg-[#3F72AF] text-white hover:bg-[#4b6583]"
                         >
                             Sign In
                         </Button>

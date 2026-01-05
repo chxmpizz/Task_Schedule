@@ -35,21 +35,6 @@ export class User {
   @Prop({ required: false, trim: true })
   Occupation?: string;
 
-  @Prop({ required: false, trim: true })
-  house_Number?: string;
-
-  @Prop({ required: false, trim: true })
-  street?: string;
-
-  @Prop({ required: false, trim: true })
-  subDistrict?: string;
-
-  @Prop({ required: false, trim: true })
-  district?: string;
-
-  @Prop({ required: false, trim: true })
-  province?: string;
-
   // ปรับ Age ให้ไม่บังคับ
   @Prop({ required: false })
   Age?: number;

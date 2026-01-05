@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@workspace/ui/components/button'
 import {
     Avatar,
@@ -19,10 +19,36 @@ import { LayoutDashboard, ListTodo, Calendar } from 'lucide-react'
 import { ModeToggle } from '../../../components/Theme'
 import LogoTag from './LogoTag'
 import { usePathname, useRouter } from 'next/navigation'
+import { getProfile, logout } from '@/hooks/useAuth'
+
+interface ProfileType {
+    Name: string
+    Profile_Img: string
+}
 
 const Navbar = () => {
+    const [profile, setProfile] = useState<ProfileType | null>(null)
     const pathName = usePathname()
     const router = useRouter()
+
+    useEffect(() => {
+        let isMounted = true // Prevents state updates on unmounted components
+
+        const fetchProfile = async () => {
+            try {
+                const data = await getProfile()
+                if (isMounted) {
+                    setProfile(data)
+                }
+            } catch (error) {
+                console.error('Failed to load profile:', error)
+            }
+        }
+        fetchProfile()
+        return () => {
+            isMounted = false // Cleanup function
+        }
+    }, [])
 
     return (
         <div className="bg-background/70 fixed top-0 z-50 w-full backdrop-blur-lg">
@@ -56,12 +82,17 @@ const Navbar = () => {
                         <DropdownMenu>
                             <DropdownMenuTrigger className="cursor-pointer">
                                 <Avatar>
-                                    <AvatarImage src="https://github.com/shadcn.png" />
-                                    <AvatarFallback>CN</AvatarFallback>
+                                    <AvatarImage src={profile?.Profile_Img} />
+                                    <AvatarFallback>
+                                        {profile?.Name.charAt(0).toUpperCase()}
+                                        {profile?.Name.charAt(1).toUpperCase()}
+                                    </AvatarFallback>
                                 </Avatar>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56" align="start">
-                                <DropdownMenuLabel>CN</DropdownMenuLabel>
+                                <DropdownMenuLabel>
+                                    {profile?.Name}
+                                </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
                                     onClick={() => router.push('/profile')}
@@ -69,7 +100,13 @@ const Navbar = () => {
                                     Profile
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>
+                                <DropdownMenuItem
+                                    onClick={async () => {
+                                        await logout()
+                                        router.refresh()
+                                        router.push('/signin')
+                                    }}
+                                >
                                     Log out
                                     <DropdownMenuShortcut>
                                         ⇧⌘Q

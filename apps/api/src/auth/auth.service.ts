@@ -41,7 +41,6 @@ export class AuthService {
     }
     const { googleId, email, name, picture } = req.user;
     let user = await this.userModel.findOne({ Email: email });
-    console.log('Searching for user with email:', user);
 
     if (!user) {
       user = new this.userModel({

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -6,6 +7,7 @@ import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import type { Response } from 'express';
 import { GoogleAuthGuard } from './google-auth.guard';
+import { AuthGuard } from '@nestjs/passport';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -13,10 +15,10 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req, @Res({ passthrough: true }) res: Response) {
-    console.log(req.user);
     const { access_token } = await this.authService.login(req.user);
     res.cookie('access_token', access_token, {
       httpOnly: true,
+      sameSite: 'lax',
     });
     return { message: 'Successfully logged in' };
   }
@@ -37,16 +39,23 @@ export class AuthController {
     const { accessToken } = await this.authService.googleLogin(req);
     res.cookie('access_token', accessToken, {
       httpOnly: true,
+      sameSite: 'lax',
     });
-    res.redirect('/user/profile');
+    res.redirect('http://localhost:3000/dashboard');
   }
 
-  @Get('logout')
+  @Post('logout')
   // eslint-disable-next-line @typescript-eslint/require-await
-  async logout(@Request() req, @Res() res: Response) {
+  async logout(@Res({ passthrough: true }) res: Response) {
     res.clearCookie('access_token', {
       httpOnly: true,
+      sameSite: 'lax',
     });
-    return res.json({ message: 'Successfully logged out' });
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('me')
+  getProfile(@Request() req) {
+    return req.user;
   }
 }
